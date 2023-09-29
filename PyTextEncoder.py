@@ -13,9 +13,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('Conversor Base64')
         self.setWindowIcon(QIcon('icon.png'))
 
-
-        self.setGeometry(100, 100, 600, 450)
-
+        self.setGeometry(100, 100, 400, 300)
 
         self.input_label = QLabel('Texto de entrada:', self)
         self.input_label.move(20, 20)
@@ -30,22 +28,33 @@ class MainWindow(QMainWindow):
         self.output_text.resize(360, 30)
         self.output_text.setReadOnly(True)
 
-        self.convert_button = QPushButton('Converter', self)
-        self.convert_button.move(20, 150)
-        self.convert_button.clicked.connect(self.convert_text)
+        self.encode_button = QPushButton('Codificar para Base64', self)
+        self.encode_button.move(20, 150)
+        self.encode_button.clicked.connect(self.encode_text)
+
+        self.decode_button = QPushButton('Decodificar de Base64', self)
+        self.decode_button.move(220, 150)
+        self.decode_button.clicked.connect(self.decode_text)
 
         self.clear_button = QPushButton('Limpar', self)
-        self.clear_button.move(120, 150)
+        self.clear_button.move(120, 200)
         self.clear_button.clicked.connect(self.clear_text)
 
         self.exit_button = QPushButton('Sair', self)
-        self.exit_button.move(220, 150)
+        self.exit_button.move(220, 200)
         self.exit_button.clicked.connect(self.close)
 
-    def convert_text(self):
+    def encode_text(self):
         input_text = self.input_text.text()
 
         output_text = base64.b64encode(input_text.encode('utf-8')).decode('utf-8')
+
+        self.output_text.setText(output_text)
+
+    def decode_text(self):
+        input_text = self.input_text.text()
+
+        output_text = base64.b64decode(input_text.encode('utf-8')).decode('utf-8')
 
         self.output_text.setText(output_text)
 
