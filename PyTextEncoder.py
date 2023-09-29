@@ -14,7 +14,7 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QIcon('icon.png'))
 
 
-        self.setGeometry(100, 100, 400, 300)
+        self.setGeometry(100, 100, 600, 450)
 
 
         self.input_label = QLabel('Texto de entrada:', self)
