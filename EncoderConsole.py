@@ -30,20 +30,6 @@ def base64_para_texto(base64_str):
     return texto
 
 
-# Verifica se o nome do arquivo de entrada foi fornecido como argumento
-if len(sys.argv) < 2:
-    print("Erro: nome do arquivo de entrada não fornecido.")
-    sys.exit(1)
-
-# Abre o arquivo de entrada para leitura
-try:
-    with open(sys.argv[1], 'r') as arquivo_entrada:
-        # Lê o conteúdo do arquivo de entrada
-        conteudo = arquivo_entrada.read()
-except FileNotFoundError:
-    print("Erro: arquivo de entrada não encontrado.")
-    sys.exit(1)
-
 while True:
     # Pergunta ao usuário qual conversão ele deseja realizar
     escolha = input(
@@ -51,18 +37,24 @@ while True:
 
     # Verifica a escolha do usuário
     if escolha == '1':
+        # Pede ao usuário para inserir o texto a ser codificado em base64
+        texto = input("Digite o texto a ser codificado em base64: ")
+
         # Converte o texto de entrada em base64
-        texto_codificado = texto_para_base64(conteudo)
+        texto_codificado = texto_para_base64(texto)
 
         # Imprime o resultado
-        print("Texto Original: ", conteudo)
+        print("Texto Original: ", texto)
         print("Texto Codificado em Base64: ", texto_codificado)
     elif escolha == '2':
+        # Pede ao usuário para inserir o texto base64 a ser decodificado
+        texto_base64 = input("Digite o texto base64 a ser decodificado: ")
+
         # Converte o texto base64 em texto
-        texto_decodificado = base64_para_texto(conteudo)
+        texto_decodificado = base64_para_texto(texto_base64)
 
         # Imprime o resultado
-        print("Texto Codificado em Base64: ", conteudo)
+        print("Texto Codificado em Base64: ", texto_base64)
         print("Texto Decodificado: ", texto_decodificado)
     elif escolha == '3':
         # Finaliza o programa
